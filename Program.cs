@@ -7,8 +7,10 @@ await Task.WhenAll(producerTask, consumerTask);
 
 Task Producer()
 {
+    Console.WriteLine($"Producer thread with ID {Thread.CurrentThread.ManagedThreadId} is running...");
     while (true)
     {
+        Console.Write("Please, enter a string: ");
         string? input = Console.ReadLine();
 
         lock (stack)
@@ -21,6 +23,7 @@ Task Producer()
 
 Task Consumer()
 {
+    Console.WriteLine($"Consumer thread with ID {Thread.CurrentThread.ManagedThreadId} is running...");
     while (true)
     {
         lock (stack)
